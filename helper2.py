@@ -75,9 +75,9 @@ def breakdown_main(df1,questionnNumber,question_dict, percent=True):
             plot_dict(dict1)
         
 
-def split_over_experience(df, select_title='Data Scientist'):
+def split_over_experience(df, select_title='Data Scientist', question_number='Q7'):
     
-    '''Takes a 
+    '''Splits use of technology over experience levels'''
     
     df_ds_exp = df[df['Q5']=='Data Scientist'].groupby("Q6").count()
     
@@ -89,7 +89,7 @@ def split_over_experience(df, select_title='Data Scientist'):
     list_of_question = []
     list_of_languages = []
     for x in df_ds_exp.columns:
-        if x[0:2] == 'Q7':
+        if x[0:2] == question_number:
             list_of_question.append(x)
             list_of_languages.append(question_dict[x].split(" - ")[-1])
 
