@@ -74,3 +74,33 @@ def breakdown_main(df1,questionnNumber,question_dict, percent=True):
             dict1 = count_languages(questionnNumber = questionnNumber, df1 = df1 ,question_dict=question_dict )
             plot_dict(dict1)
         
+
+def split_over_experience(df, select_title='Data Scientist'):
+    
+    '''Takes a 
+    
+    df_ds_exp = df[df['Q5']=='Data Scientist'].groupby("Q6").count()
+    
+    ordered_list_experience = ['< 1 years',
+                '1-2 years', 
+                 '3-5 years', '5-10 years',
+                '10-20 years', '20+ years'
+       ]
+    list_of_question = []
+    list_of_languages = []
+    for x in df_ds_exp.columns:
+        if x[0:2] == 'Q7':
+            list_of_question.append(x)
+            list_of_languages.append(question_dict[x].split(" - ")[-1])
+
+    ordered_df = df_ds_exp_small.loc[ordered_list_experience,:]
+    
+    plt.figure(figsize=(10,5))
+
+    for x in ordered_df.columns:
+        ordered_df[x].plot(legend=True,
+                      title = "Language popularity between experience levels",
+                      x='Experience',
+                      y='Use by percentage of population')
+        plt.xlabel('Experience')
+        plt.ylabel('Use by percentage of sample') 
